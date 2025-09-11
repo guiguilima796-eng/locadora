@@ -58,3 +58,17 @@ class Pagamento(models.Model):
     observacao = models.TextField(blank=True, null=True)
     def __str__(self):
         return f"Pagamento {self.contrato.id} - {self.valor_pago} em {self.data_pagamento}"
+class Manutencao(models.Model):
+    imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE, related_name="manutencoes")
+    contrato = models.ForeignKey(Contrato, on_delete=models.SET_NULL, null=True, blank=True, related_descricao = models.TextField())
+    data_servico = models.DateField()
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    def __str__(self):
+        return f"Manutenção {self.imovel.endereco} - {self.data_servico}"
+class Documento(models.Model):
+    contrato = models.ForeignKey(Contrato, on_delete=models.CASCADE, related_name="documentos")
+    titulo = models.CharField(max_length=100)
+    arquivo = models.FileField(upload_to="documentos/")
+    data_upload = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.titulo} ({self.contrato.id})"
