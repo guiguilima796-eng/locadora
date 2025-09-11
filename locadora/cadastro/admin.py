@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Locador,Locatario,Imovel,Contrato,Pagamento
+from .models import Locador,Locatario,Imovel,Contrato,Pagamento,Documento,Manutencao
 
 @admin.register(Locador)
 class locadorAdmin(admin.ModelAdmin):
@@ -26,3 +26,12 @@ class PagamentoAdmin(admin.ModelAdmin):
     list_display = ('contrato', 'data_pagamento', 'valor_pago', 'metodo')
     list_filter = ('metodo', 'data_pagamento')
     search_fields = ('contrato__locatario__nome', 'contrato__locador__nome')
+@admin.register(Manutencao)
+class ManutencaoAdmin(admin.ModelAdmin):
+    list_display = ("imovel", "contrato", "data_servico", "valor")
+    list_filter = ("data_servico",)
+    search_fields = ("imovel__endereco", "contrato__locatario__nome")
+@admin.register(Documento)
+class DocumentoAdmin(admin.ModelAdmin):
+    list_display = ("contrato", "titulo", "data_upload")
+    search_fields = ("titulo", "contrato__locatario__nome")
