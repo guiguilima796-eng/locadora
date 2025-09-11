@@ -118,6 +118,22 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+JAZZMIN_SETTINGS = {
+    "site_title": "Sistema de Alocadora",
+    "site_header": "Painel de Administração",
+    "site_brand": "Alocadora",
+    "welcome_sign": "Bem-vindo ao sistema de gestão de imóveis",
+    "copyright": "Alocadora LTDA",
+    "search_model": ["cadastro.Locatario", "cadastro.Imovel"],
+    "topmenu_links": [
+    {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+    {"model": "cadastro.Contrato"},
+    {"model": "cadastro.Pagamento"},
+    ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+}
+
 JAZZMIN_UI_TWEAKS = {
     "theme": "darkly",
     "dark_mode_theme": "darkly",
