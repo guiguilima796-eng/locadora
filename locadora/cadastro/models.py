@@ -60,7 +60,8 @@ class Pagamento(models.Model):
         return f"Pagamento {self.contrato.id} - {self.valor_pago} em {self.data_pagamento}"
 class Manutencao(models.Model):
     imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE, related_name="manutencoes")
-    contrato = models.ForeignKey(Contrato, on_delete=models.SET_NULL, null=True, blank=True, related_descricao = models.TextField())
+    contrato = models.ForeignKey(Contrato, on_delete=models.SET_NULL, null=True, blank=True )
+    descricao = models.TextField(null=True, blank=True)
     data_servico = models.DateField()
     valor = models.DecimalField(max_digits=10, decimal_places=2)
     def __str__(self):
