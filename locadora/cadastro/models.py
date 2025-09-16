@@ -6,15 +6,15 @@ class Locador(models.Model):
     nome = models.CharField(max_length=100)
     email = models.EmailField( unique = True)
   
-    def _str_(self):
-        return self.nome
+    def __str__(self):
+        return f"{self.nome}"
 
 class Locatario(models.Model):
     nome = models.CharField(max_length=100)
     telefone = models.CharField(max_length=15)
     
-    def _str_(self):
-        return self.nome
+    def __str__(self):
+        return f"{self.nome}"
     
 class Imovel (models.Model):
     TIPOS = [
@@ -28,7 +28,7 @@ class Imovel (models.Model):
     tipo = models.CharField( max_length=10, choices=TIPOS)
     valor_mensal = models.DecimalField(max_digits=10, decimal_places=2)
     
-    def _str_(self):
+    def __str__(self):
         return f"{self.tipo} - {self.endereco}"
     
 class Contrato (models.Model):
@@ -39,7 +39,7 @@ class Contrato (models.Model):
     data_fim = models.DateField()
     valor = models.DecimalField(max_digits=10, decimal_places=2)
     
-    def _str_(self):
+    def __str__(self):
         return f"Contrato {self.locador} <-> {self.locatario} ({self.imovel})"
 
 class Pagamento(models.Model):
